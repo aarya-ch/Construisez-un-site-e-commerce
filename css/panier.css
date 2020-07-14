@@ -1,0 +1,158 @@
+/*General*/
+body
+{
+	margin: 0;
+	font-family: Montserrat;
+}
+
+ul 
+{
+	list-style-type: none;
+}
+
+a
+{
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+}
+/*Header*/
+header
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #fff6fe;
+	width: 100%;
+}
+
+.btn:hover{
+	cursor: pointer;
+}
+header h1
+{
+	margin-left: 10px;
+}
+
+nav ul li
+{
+	display: inline-block;
+	margin-right: 10px;
+}
+/*Main*/
+main{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+h2
+{
+	display: flex;
+	justify-content: center;
+}
+
+.cart-header
+{
+	font-weight: bold;	
+}
+
+.cart-column{
+	border-bottom: 1px solid black;
+	margin-right: 1.5em;
+	padding-bottom: 10px;
+	margin-top: 10px;
+}
+.cart-row
+{
+	display: flex;
+}
+
+.cart-item{
+	width: 45%;
+}
+
+.cart-price{
+	width: 20%;
+}
+
+.cart-quantity{
+	width: 35%;
+}	
+
+.cart-item-title{
+	margin-left: 0.5em;
+}
+
+.cart-item-image{
+	width: 75px;
+	height: auto;
+	border-radius: 10px;
+}
+
+.btn-danger{
+	height: 34px;
+	color: white;
+	background-color: red;
+	border: none;
+	border-radius: 0.3em;
+	font-weight: bold;
+}
+
+.cart-quantity-input{
+	height: 34px;
+	width: 50px;
+	border-radius: 5px;
+	border: 1px solid black;
+	background-color: #eee;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.cart-row:last-child{
+	border-bottom: 1px solid black;
+}
+
+.cart-row:last-child .cart-column{
+	border: none;
+}
+
+.cart-total{
+	text-align: end;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+.cart-total-title{
+	font-weight: bold;
+	margin-right: 20px;
+	font-size: 1.2em;
+}
+
+.cart-total-price{
+	font-size: 1.2em;
+}
+
+.btn-purchase{
+	display: block;
+	height: 50px;
+	margin:40px auto 80px auto;
+	font-size: 1.75em;
+	color: black;
+	background-color: #fff6fe;
+	border: 1px solid black;
+	border-radius: 0.3em;
+	font-weight: bold;
+}
+
+
+/*Footer*/
+footer
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	background-color: #fff6fe;
+	height: 50px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}

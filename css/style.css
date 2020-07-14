@@ -1,0 +1,84 @@
+/*General*/
+body
+{
+	margin: 0;
+	font-family: Montserrat;
+}
+
+ul 
+{
+	list-style-type: none;
+}
+
+a
+{
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+}
+
+img
+{
+	width: 200px;
+	height: 150px;
+}
+
+.btn
+{
+	border: 1px solid black;
+	background-color: #fff6fe;
+	border-radius: 10px;
+	padding: 8px;
+}
+/*Header*/
+header
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #fff6fe;
+	width: 100%;
+}
+
+header h1
+{
+	margin-left: 10px;
+}
+
+nav ul li
+{
+	display: inline-block;
+	margin-right: 10px;
+}
+/*Main*/
+#produits
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin-top: 65px;
+	margin-bottom: 70px;
+}
+.produit
+{
+	box-shadow: 0px 2.5px 7.5px black;
+	height: 300px;
+	text-align: center;
+	margin-bottom: 30px;
+	padding: 10px;
+	background-color: #fff6fe;
+}
+
+/*Footer*/
+footer
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	background-color: #fff6fe;
+	height: 50px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
