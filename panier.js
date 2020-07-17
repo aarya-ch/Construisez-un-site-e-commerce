@@ -39,6 +39,7 @@ for (let product of products){
 	itemImage.src = product.image;
 	itemTitle.textContent = product.name;
 	itemPrice.textContent = product.price;
+	product.price = parseInt(product.price);
 	itemQuantity.value = 1;
 	/*removeButton.textContent = "REMOVE";*/
 }
@@ -50,5 +51,16 @@ for (let i = 0; i < removeCartItemButtons.length;  i++){
 		let buttonClicked = event.target
 		buttonClicked.parentElement.parentElement.remove()
 		localStorage.clear();
+		let emptyCart = document.querySelector(".cart-total-price");
+		emptyCart.textContent = 0 + '€';
 	})
 }
+
+let total = 0;
+for (let i = 0; i < products.length; i++) {
+    total += products[i].price;
+    console.log(total)
+}
+
+let totale = document.querySelector(".cart-total-price");
+totale.textContent = total + '€';
