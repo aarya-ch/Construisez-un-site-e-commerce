@@ -52,7 +52,7 @@ for (let i = 0; i < removeCartItemButtons.length;  i++){
 		buttonClicked.parentElement.parentElement.remove()
 		localStorage.clear();
 		let emptyCart = document.querySelector(".cart-total-price");
-		emptyCart.textContent = 0 + '€';
+		emptyCart.textContent = 0 + ' €';
 	})
 }
 
@@ -63,4 +63,4 @@ for (let i = 0; i < products.length; i++) {
 }
 
 let totale = document.querySelector(".cart-total-price");
-totale.textContent = total + '€';
+totale.textContent = total + ' €';
