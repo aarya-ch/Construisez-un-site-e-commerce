@@ -8,15 +8,9 @@ for (let i = 0; i < removeCartItemButtons.length;  i++){
 }
 
 let products = JSON.parse(localStorage.getItem('productsInCart'));
-console.log(products)
 
 for (let product of products){
-	let shoppingCart = document.getElementById('shopping-cart');
-	let titles = document.createElement("div");
-	let productTitle = document.createElement("span");
-	let priceTitle = document.createElement("span");
-	let quantityTitle = document.createElement("span");
-	let items = document.createElement("div");
+	let items = document.getElementsByClassName("cart-items");
 	let cartRow = document.createElement("div");
 	let column = document.createElement("div");
 	let itemImage = document.createElement("img");
@@ -28,11 +22,6 @@ for (let product of products){
 	let removeButton = document.createElement("button");
 
 
-	titles.setAttribute("class", "cart-row");
-	productTitle.setAttribute("class", "cart-item","cart-header","cart-column");
-	priceTitle.setAttribute("class", "cart-price, cart-header, cart-column");
-	quantityTitle.setAttribute("class", "cart-quantity, cart-header, cart-column");
-	items.setAttribute("class", "cart-items");
 	cartRow.setAttribute("class", "cart-row");
 	column.setAttribute("class", "cart-item", "cart-column");
 	itemImage.setAttribute("class", "cart-item-image");
@@ -44,10 +33,6 @@ for (let product of products){
 	removeButton.setAttribute("class", "btn", "btn-danger", "cart-quantity-button");
 
 
-	shoppingCart.appendChild(titles);
-	titles.appendChild(productTitle);
-	titles.appendChild(priceTitle);
-	titles.appendChild(quantityTitle);
 	items.appendChild(cartRow);
 	cartRow.appendChild(column);
 	column.appendChild(itemImage);
@@ -57,9 +42,6 @@ for (let product of products){
 	cartQuantity.appendChild(removeButton);
 
 
-	productTitle.textContent = "PRODUIT";
-	priceTitle.textContent = "PRIX";
-	quantityTitle.textContent = "QUANTITE";
 	itemImage.src = product.image;
 	itemTitle = product.name;
 	itemPrice = product.price;
