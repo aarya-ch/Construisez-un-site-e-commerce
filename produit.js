@@ -43,6 +43,7 @@ fetch(url)
 				name : teddy.name,
 				price : teddy.price,
 				image : teddy.imageUrl,
+				id : teddy._id
 			}
 			
 			if(localStorage.getItem("productsInCart") === null) {
