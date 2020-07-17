@@ -34,18 +34,18 @@ for (let product of products){
 
 
 	itemImage.src = product.image;
-	itemTitle = product.name;
-	itemPrice = product.price;
+	itemTitle.textContent = product.name;
+	itemPrice.textContent = product.price;
 	removeButton.textContent = "REMOVE";
 	removeButton.value = 1;
 }
 
 
-let removeCartItemButtons = document.getElementsByClassName('btn-danger');
+/*let removeCartItemButtons = document.getElementsByClassName('btn-danger');
 for (let i = 0; i < removeCartItemButtons.length;  i++){
 	let button = removeCartItemButtons[i]
 	button.addEventListener('click', function(event){
 		let buttonClicked = event.target
 		buttonClicked.parentElement.parentElement.remove()	
 	})
-}
+}*/
