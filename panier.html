@@ -19,46 +19,80 @@
 		</header> 
 
 		<main>
-			<h2>PANIER</h2>
+			<div class="shopping-cart">
+				<h2>PANIER</h2>
 				<div class="cart-row">
 					<span class="cart-item cart-header cart-column">PRODUIT</span>
 					<span class="cart-price cart-header cart-column">PRIX</span>
-					<span class="cart-quantity cart-header cart-column">QUANTITE</span>
 				</div>
 				<div class="flexContainer">
 					<div class="cart-items">
-						<!-- <div class="cart-row">
-							<div class="cart-item cart-column">
-								<img class="cart-item-image">
-								<span class="cart-item-title"></span>
-							</div>
-							<div class="cart-price cart-column">
-								<span class="price"></span>
-							</div>
-							<div class="cart-quantity cart-column">
-								<input class="cart-quantity-input" type="number" value="1">
-								<button class="btn btn-danger cart-quantity-button" tyoe="button">REMOVE</button>
-							</div>
-						</div> -->
+
 					</div>
 					<div>
 						<button class="btn-danger" type="button">REMOVE</button>
 					</div>
 				</div>
-						<div class="cart-total">
-							<strong class="cart-total-title">Total :</strong>
-							<span class="cart-total-price">0 €</span>
-						</div>
+				<div class="cart-total">
+					<strong class="cart-total-title">Total :</strong>
+					<span class="cart-total-price">0 €</span>
+				</div>		
 			</div>
-			
-			<div>
-				<button class="btn-purchase" type="button">ACHETER</button>
+			<div class="container">
+				<h2>FORMULAIRE</h2>
+				<form onsubmit="return validation()">
+					<div class="form-group">
+						<label>Nom :</label>
+						<input type="text" name="" id="nom" class="form-control">	
+						<span id="erreurnom" class="erreur"></span>
+					</div>
+
+					<div class="form-group">
+						<label>Prénom :</label>
+						<input type="text" name="" id="prenom" class="form-control">
+						<span id="erreurprenom" class="erreur"></span>	
+					</div>
+
+					<div class="form-group">
+						<label>Adresse e-mail :</label>
+						<input type="text" name="" id="e-mail" class="form-control">
+						<span id="erreuremail" class="erreur"></span>	
+					</div> 
+
+					<div class="form-group">
+						<label>Numéro de Téléphone :</label>
+						<input type="text" name="" id="telephone" class="form-control">
+						<span id="erreurtelephone" class="erreur"></span>	
+					</div>
+
+					<div class="form-group">
+						<label>Adresse :</label>
+						<input type="text" name="" id="adresse" class="form-control">	
+						<span id="erreuradresse" class="erreur"></span>
+					</div>
+
+					<div class="form-group">
+						<label>Code Postal :</label>
+						<input type="text" name="" id="code-postal" class="form-control">
+						<span id="erreurcodepostal" class="erreur"></span>	
+					</div>
+
+					<div class="form-group">
+						<label>Ville :</label>
+						<input type="text" name="" id="ville" class="form-control">	
+						<span id="erreurville" class="erreur"></span>
+					</div>
+
+					<button class="btn-purchase" type="submit">ACHETER</button>
+				</form>	
+			</div>
+				
 			</div>
 		</main>
 
 		<footer>
 			<div>
-				Orinoco
+				<a href="index.html">Orinoco</a>
 			</div>
 		</footer>
 		<script type="text/javascript" src="panier.js"></script>
