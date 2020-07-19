@@ -8,9 +8,6 @@ for (let product of products){
 	let itemTitle = document.createElement("span");
 	let cartPrice = document.createElement("div");
 	let itemPrice = document.createElement("span");
-	let cartQuantity = document.createElement("div");
-	let itemQuantity = document.createElement("input");
-	/*let removeButton = document.createElement("button");*/
 
 
 	cartRow.setAttribute("class", "cart-row");
@@ -19,10 +16,6 @@ for (let product of products){
 	itemTitle.setAttribute("class", "cart-item-title");
 	cartPrice.setAttribute("class", "cart-price", "cart-column");
 	itemPrice.setAttribute("class", "price");
-	cartQuantity.setAttribute("class", "cart-quantity", "cart-column");
-	itemQuantity.setAttribute("class", "cart-quantity-input");
-	itemQuantity.setAttribute("type", "number");
-	/*removeButton.setAttribute("class", "btn-danger");*/
 
 
 	items.appendChild(cartRow);
@@ -31,17 +24,12 @@ for (let product of products){
 	item.appendChild(itemTitle);
 	cartRow.appendChild(cartPrice);
 	cartPrice.appendChild(itemPrice);
-	cartRow.appendChild(cartQuantity);
-	cartQuantity.appendChild(itemQuantity);
-	/*cartQuantity.appendChild(removeButton);*/
 
 
 	itemImage.src = product.image;
 	itemTitle.textContent = product.name;
 	itemPrice.textContent = product.price;
 	product.price = parseInt(product.price);
-	itemQuantity.value = 1;
-	/*removeButton.textContent = "REMOVE";*/
 }
 
 let removeCartItemButtons = document.getElementsByClassName('btn-danger');
@@ -59,8 +47,76 @@ for (let i = 0; i < removeCartItemButtons.length;  i++){
 let total = 0;
 for (let i = 0; i < products.length; i++) {
     total += products[i].price;
-    console.log(total)
 }
 
 let totale = document.querySelector(".cart-total-price");
 totale.textContent = total + ' €';
+
+// Formulaire //
+
+function validation(){
+	let nom = document.getElementById("nom").value;
+	let prenom = document.getElementById("prenom").value;
+	let email = document.getElementById("e-mail").value;
+	let telephone = document.getElementById("telephone").value;
+	let adresse = document.getElementById("adresse").value;
+	let codePostal = document.getElementById("code-postal").value;
+	let ville = document.getElementById("ville").value;
+	
+	let nomCheck = /^[A-Za-z]{2,30}$/;
+	let prenomCheck = /^[A-Za-z]{2,30}$/;
+	let emailCheck = /^[A-Za-z-_.0-9]{3,}@[a-z]{3,}[.]{1}[a-z]{2,3}$/;
+	let telephoneCheck = /^0[0-9]{9}$/; 
+	let adresseCheck = /^[A-Za-z0-9]$/;
+	let codePostalCheck = /^[0-9]{5,30}$/;
+	let villeCheck = /^[A-Za-z-]{1,38}$/;
+
+	if(nomCheck.test(nom)){
+		document.getElementById('erreurnom').innerHTML = " ";
+	}else{
+		document.getElementById('erreurnom').innerHTML = "* Nom invalide ";
+		return false;
+	}
+
+	if(prenomCheck.test(prenom)){
+		document.getElementById('erreurprenom').innerHTML = " ";
+	}else{
+		document.getElementById('erreurprenom').innerHTML = "* Prénom invalide ";
+		return false;
+	}
+
+	if(emailCheck.test(email)){
+		document.getElementById('erreuremail').innerHTML = " ";
+	}else{
+		document.getElementById('erreuremail').innerHTML = "* Adresse e-mail invalide ";
+		return false;
+	}
+
+	if(telephoneCheck.test(telephone)){
+		document.getElementById('erreurtelephone').innerHTML = " ";
+	}else{
+		document.getElementById('erreurtelephone').innerHTML = "* Numéro de Téléphone invalide ";
+		return false;
+	}
+
+	if(adresseCheck.test(adresse)){
+		document.getElementById('erreuradresse').innerHTML = " ";
+	}else{
+		document.getElementById('erreuradresse').innerHTML = "* Adresse invalide ";
+		return false;
+	}
+
+	if(codePostalCheck.test(codePostal)){
+		document.getElementById('erreurcodepostal').innerHTML = " ";
+	}else{
+		document.getElementById('erreurcodepostal').innerHTML = "* Code Postal invalide ";
+		return false;
+	}
+
+	if(villeCheck.test(ville)){
+		document.getElementById('erreurville').innerHTML = " ";
+	}else{
+		document.getElementById('erreurville').innerHTML = "* Ville invalide ";
+		return false;
+	}
+}
