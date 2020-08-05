@@ -1,4 +1,8 @@
 let produits = JSON.parse(localStorage.getItem('productsInCart'));
+let products = [];
+products.push({id: produits.id});
+console.log(products);
+
 
 for (let produit of produits){
 	let items = document.querySelector(".cart-items");
@@ -57,9 +61,10 @@ totale.textContent = total + ' €';
 function validation(){
 	let nom = document.getElementById("nom").value;
 	let prenom = document.getElementById("prenom").value;
-	let email = document.getElementById("e-mail").value;
+	let mail = document.getElementById("e-mail").value;
 	let adresse = document.getElementById("adresse").value;
 	let ville = document.getElementById("ville").value;
+	let btnPurchase = document.getElementById("btn-purchase");
 	
 	let nomCheck = /^[A-Za-z]{2,30}$/;
 	let prenomCheck = /^[A-Za-z]{2,30}$/;
@@ -102,27 +107,11 @@ function validation(){
 		return false;
 	}
 };
-
-let nom = document.getElementById("nom").value;
-let prenom = document.getElementById("prenom").value;
-let email = document.getElementById("e-mail").value;
-let adresse = document.getElementById("adresse").value;
-let ville = document.getElementById("ville").value;
-let btnPurchase = document.getElementById("btn-purchase");
-
-btnPurchase.addEventListener('click', function (e) {
-    e.preventDefault();
-    infoFormulaire = new Object();
-    infoFormulaire.contact = { 
-        firstName: prenom.value,
-        lastName: nom.value,
-        email: email.value,
-        address: adresse.value,
-        city: ville.value
-  	 };
-  	infoFormulaire.products = [];
-    
-    for (let i = 0; i < produits.length; i++) {
-        infoFormulaire.products.push({id: produits[i].id});
-    }
-});
+    let contact = { 
+        firstName: prenom,
+        lastName: nom,
+        email: mail,
+        address: adresse,
+        city: ville
+    };
+	console.log(contact);
