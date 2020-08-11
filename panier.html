@@ -25,12 +25,12 @@
 					<span class="cart-item cart-header cart-column">PRODUIT</span>
 					<span class="cart-price cart-header cart-column">PRIX</span>
 				</div>
-				<div class="flexContainer">
+				<div id="container" class="flexContainer">
 					<div class="cart-items">
 
 					</div>
 					<div>
-						<button class="btn-danger" type="button">REMOVE</button>
+						<button id="btn-remove" class="btn-danger" type="button">REMOVE</button>
 					</div>
 				</div>
 				<div class="cart-total">
@@ -40,51 +40,37 @@
 			</div>
 			<div class="container">
 				<h2>FORMULAIRE</h2>
-				<form onsubmit="return validation()">
 					<div class="form-group">
 						<label>Nom :</label>
-						<input type="text" name="" id="nom" class="form-control">	
-						<span id="erreurnom" class="erreur"></span>
+						<input type="text" id="lastName" class="form-control">	
+						<span id="erreurlastName" class="erreur"></span>
 					</div>
 
 					<div class="form-group">
 						<label>Prénom :</label>
-						<input type="text" name="" id="prenom" class="form-control">
-						<span id="erreurprenom" class="erreur"></span>	
+						<input type="text" id="firstName" class="form-control">
+						<span id="erreurfirstName" class="erreur"></span>	
 					</div>
 
 					<div class="form-group">
 						<label>Adresse e-mail :</label>
-						<input type="text" name="" id="e-mail" class="form-control">
+						<input type="text" name="" id="email" class="form-control">
 						<span id="erreuremail" class="erreur"></span>	
 					</div> 
 
 					<div class="form-group">
-						<label>Numéro de Téléphone :</label>
-						<input type="text" name="" id="telephone" class="form-control">
-						<span id="erreurtelephone" class="erreur"></span>	
-					</div>
-
-					<div class="form-group">
 						<label>Adresse :</label>
-						<input type="text" name="" id="adresse" class="form-control">	
-						<span id="erreuradresse" class="erreur"></span>
-					</div>
-
-					<div class="form-group">
-						<label>Code Postal :</label>
-						<input type="text" name="" id="code-postal" class="form-control">
-						<span id="erreurcodepostal" class="erreur"></span>	
+						<input type="text" name="" id="address" class="form-control">	
+						<span id="erreuraddress" class="erreur"></span>
 					</div>
 
 					<div class="form-group">
 						<label>Ville :</label>
-						<input type="text" name="" id="ville" class="form-control">	
-						<span id="erreurville" class="erreur"></span>
+						<input type="text" name="" id="city" class="form-control">	
+						<span id="erreurcity" class="erreur"></span>
 					</div>
 
-					<button class="btn-purchase" type="submit">ACHETER</button>
-				</form>	
+					<button id="btn-purchase">ACHETER</button>
 			</div>
 				
 			</div>
