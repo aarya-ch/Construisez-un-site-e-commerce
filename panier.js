@@ -1,7 +1,6 @@
 let produits = JSON.parse(localStorage.getItem('productsInCart'));
 let products = [];
 products.push({id: produits.id});
-console.log(products);
 
 
 for (let produit of produits){
@@ -50,68 +49,58 @@ for (let i = 0; i < removeCartItemButtons.length;  i++){
 
 let total = 0;
 for (let i = 0; i < produits.length; i++) {
-    total += produits[i].price;
+	total += produits[i].price;
 }
 
 let totale = document.querySelector(".cart-total-price");
 totale.textContent = total + ' €';
 
 // Formulaire //
+let contact = {};
 
-function validation(){
-	let nom = document.getElementById("nom").value;
-	let prenom = document.getElementById("prenom").value;
-	let mail = document.getElementById("e-mail").value;
-	let adresse = document.getElementById("adresse").value;
-	let ville = document.getElementById("ville").value;
-	let btnPurchase = document.getElementById("btn-purchase");
-	
-	let nomCheck = /^[A-Za-z]{2,30}$/;
-	let prenomCheck = /^[A-Za-z]{2,30}$/;
-	let emailCheck = /^[A-Za-z-_.0-9]{3,}@[a-z]{3,}[.]{1}[a-z]{2,3}$/;
-	let adresseCheck = /^[A-Za-z0-9]/;
-	let villeCheck = /^[A-Za-z-]{1,38}$/;
-
-	if(nomCheck.test(nom)){
-		document.getElementById('erreurnom').innerHTML = " ";
-	}else{
-		document.getElementById('erreurnom').innerHTML = "* Nom invalide ";
-		return false;
+function checkField(regex, id){
+	let elemValue = document.getElementById(id).value;
+	if(regex.test(elemValue)){
+		document.getElementById('erreur' + id).innerHTML = "";
+		contact[id] = elemValue;
+		return 1;
+	} else {
+		document.getElementById('erreur' + id).innerHTML = "* " + id + " invalide ";
+		contact[id] = "";
+		return 0;
 	}
+}
 
-	if(prenomCheck.test(prenom)){
-		document.getElementById('erreurprenom').innerHTML = " ";
-	}else{
-		document.getElementById('erreurprenom').innerHTML = "* Prénom invalide ";
-		return false;
-	}
+document.getElementById("btn-purchase").addEventListener("click", function(){
 
-	if(emailCheck.test(email)){
-		document.getElementById('erreuremail').innerHTML = " ";
-	}else{
-		document.getElementById('erreuremail').innerHTML = "* Adresse e-mail invalide ";
-		return false;
-	}
+	let checkedElements = 0;
 
-	if(adresseCheck.test(adresse)){
-		document.getElementById('erreuradresse').innerHTML = " ";
-	}else{
-		document.getElementById('erreuradresse').innerHTML = "* Adresse invalide ";
-		return false;
-	}
+	checkedElements += checkField(new RegExp(/^[A-Za-z]{2,30}$/), "firstName");
+	checkedElements += checkField(new RegExp(/^[A-Za-z]{2,30}$/), "lastName");
+	checkedElements += checkField(new RegExp(/^[A-Za-z0-9]/), "address");
+	checkedElements += checkField(new RegExp(/^[A-Za-z-]{1,38}$/), "city");
+	checkedElements += checkField(new RegExp(/^[A-Za-z-_.0-9]{3,}@[a-z]{3,}[.]{1}[a-z]{2,3}$/), "email");
 
-	if(villeCheck.test(ville)){
-		document.getElementById('erreurville').innerHTML = " ";
-	}else{
-		document.getElementById('erreurville').innerHTML = "* Ville invalide ";
-		return false;
+	if(checkedElements == 5){
+		localStorage.setItem("contact", JSON.stringify(contact));
+		window.location.replace("file:///C:/Users/Arujan/Desktop/JWDP5-master/confirmation.html?total=" + total);
 	}
-};
-    let contact = { 
-        firstName: prenom,
-        lastName: nom,
-        email: mail,
-        address: adresse,
-        city: ville
-    };
-	console.log(contact);
+});
+
+const panier = {
+	contact: {}, 
+	products: []
+}
+console.log(products);
+
+const options = {
+	method: 'POST',
+	body: JSON.stringify(panier),
+	headers: {
+		'Content-Type': 'application/json'
+	}
+}
+
+fetch('http://localhost:3000/api/teddies/order', panier)
+	.then(res => res.json())
+	.then(res => console.log(res));
