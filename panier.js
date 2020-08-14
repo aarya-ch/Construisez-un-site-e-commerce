@@ -81,26 +81,34 @@ document.getElementById("btn-purchase").addEventListener("click", function(){
 	checkedElements += checkField(new RegExp(/^[A-Za-z-]{1,38}$/), "city");
 	checkedElements += checkField(new RegExp(/^[A-Za-z-_.0-9]{3,}@[a-z]{3,}[.]{1}[a-z]{2,3}$/), "email");
 
-	if(checkedElements == 5){
+	let panier = {
+		contact:	contact, 
+		products: produits.id
+		}
+const options = {
+		method: 'POST',
+		body: JSON.stringify(panier),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+}
+
+fetch('http://localhost:3000/api/teddies/order', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(panier),
+})
+.then(response => response.json())
+.then(panier => {
+  console.log('Success:', panier);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+if(checkedElements == 5){
 		localStorage.setItem("contact", JSON.stringify(contact));
 		window.location.replace("file:///C:/Users/Arujan/Desktop/JWDP5-master/confirmation.html?total=" + total);
 	}
 });
-
-const panier = {
-	contact: {}, 
-	products: []
-}
-console.log(products);
-
-const options = {
-	method: 'POST',
-	body: JSON.stringify(panier),
-	headers: {
-		'Content-Type': 'application/json'
-	}
-}
-
-fetch('http://localhost:3000/api/teddies/order', panier)
-	.then(res => res.json())
-	.then(res => console.log(res));
