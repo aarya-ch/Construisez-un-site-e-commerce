@@ -1,7 +1,10 @@
 let produits = JSON.parse(localStorage.getItem('productsInCart'));
-let products = [];
-products.push({id: produits.id});
+if (produits) {
+	let productsId = [];
 
+for(let i = 0; i < produits.length; i++){
+	productsId[i] = produits[i].id;
+}
 
 for (let produit of produits){
 	let items = document.querySelector(".cart-items");
@@ -82,33 +85,30 @@ document.getElementById("btn-purchase").addEventListener("click", function(){
 	checkedElements += checkField(new RegExp(/^[A-Za-z-_.0-9]{3,}@[a-z]{3,}[.]{1}[a-z]{2,3}$/), "email");
 
 	let panier = {
-		contact:	contact, 
-		products: produits.id
-		}
-const options = {
+		contact: contact, 
+		products: productsId
+	}
+
+	const options = {
 		method: 'POST',
 		body: JSON.stringify(panier),
 		headers: {
 			'Content-Type': 'application/json'
-		}
-}
-
-fetch('http://localhost:3000/api/teddies/order', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(panier),
-})
-.then(response => response.json())
-.then(panier => {
-  console.log('Success:', panier);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
-if(checkedElements == 5){
-		localStorage.setItem("contact", JSON.stringify(contact));
-		window.location.replace("file:///C:/Users/Arujan/Desktop/JWDP5-master/confirmation.html?total=" + total);
+		}	
 	}
+
+	console.log(panier);
+
+	fetch('http://localhost:3000/api/teddies/order', options)
+	.then(res => res.json())
+	.then(res => {
+		window.location.replace("file:///C:/Users/Arujan/Desktop/JWDP5-master/confirmation.html?total=" + total + "&order=" + res.orderId);
+	})
+	.catch((error) => {
+		console.error('Error:', error);
+	});
+
+			
 });
+
+}
