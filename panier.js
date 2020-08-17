@@ -1,62 +1,95 @@
-let produits = JSON.parse(localStorage.getItem('productsInCart'));
-if (produits) {
-	let productsId = [];
-
-for(let i = 0; i < produits.length; i++){
-	productsId[i] = produits[i].id;
+// Génère le tableau d'id des oursons dans le panier.
+function generate_products_id(products_info){
+	let products_id = [];
+	for(let i = 0; i < products_info.length; i++){
+		products_id.push(products_info[i].id);
+	}
+	return products_id;
 }
 
-for (let produit of produits){
-	let items = document.querySelector(".cart-items");
-	let cartRow = document.createElement("div");
-	let item = document.createElement("div");
-	let itemImage = document.createElement("img");
-	let itemTitle = document.createElement("span");
-	let cartPrice = document.createElement("div");
-	let itemPrice = document.createElement("span");
-
-
-	cartRow.setAttribute("class", "cart-row");
-	item.setAttribute("class", "cart-item", "cart-column");
-	itemImage.setAttribute("class", "cart-item-image");
-	itemTitle.setAttribute("class", "cart-item-title");
-	cartPrice.setAttribute("class", "cart-price", "cart-column");
-	itemPrice.setAttribute("class", "price");
-
-
-	items.appendChild(cartRow);
-	cartRow.appendChild(item);
-	item.appendChild(itemImage);
-	item.appendChild(itemTitle);
-	cartRow.appendChild(cartPrice);
-	cartPrice.appendChild(itemPrice);
-
-
-	itemImage.src = produit.image;
-	itemTitle.textContent = produit.name;
-	itemPrice.textContent = produit.price;
-	produit.price = parseInt(produit.price);
+// Créer une ligne container pour un produit dans le panier
+function create_cart_row(){
+		let cart_row = document.createElement("div");
+		cart_row.setAttribute("class", "cart-row");
+		return cart_row;
 }
 
-let removeCartItemButtons = document.getElementsByClassName('btn-danger');
-for (let i = 0; i < removeCartItemButtons.length;  i++){
-	let button = removeCartItemButtons[i]
-	button.addEventListener('click', function(event){
-		let buttonClicked = event.target
-		buttonClicked.parentElement.parentElement.remove()
+// Créer un item pour le produit du panier.
+function create_item(){
+		let item = document.createElement("div");
+		item.setAttribute("class", "cart-item", "cart-column");
+		return item;
+}
+
+// Créer une image pour le produit
+function create_image(src){
+	let image =  document.createElement("img");
+	image.setAttribute("class", "cart-item-image");
+	image.src = src;
+	return image;
+}
+
+// Créer un titre
+function create_title(product_title){
+	let title = document.createElement("span");
+	title.setAttribute("class", "cart-item-title");
+	title.textContent = product_title;
+	return title;
+}
+
+// Créer un prix
+function create_price(product_price){
+	let cart_price = document.createElement("div");
+	let item_price = document.createElement("span");
+	cart_price.setAttribute("class", "cart-price", "cart-column");
+	item_price.setAttribute("class", "price");
+	item_price.textContent = product_price + " €";
+	cart_price.appendChild(item_price);
+	return cart_price;
+}
+
+// Calcul le prix total
+function total(products){
+	let total = 0;
+	for (let i = 0; i < products.length; i++) {
+		total += products[i].price;
+	}
+	return total;
+}
+
+let products = JSON.parse(localStorage.getItem('productsInCart'));
+
+if (products) {
+
+	for (let product of products){
+
+		let items = document.getElementById("cart-container");
+
+		let cartRow = create_cart_row();
+		let item = create_item(); 
+		let itemImage = create_image(product.image);
+		let itemTitle = create_title(product.name);
+		let cartPrice = create_price(product.price);
+		
+		items.appendChild(cartRow);
+		cartRow.appendChild(item);
+		item.appendChild(itemImage);
+		item.appendChild(itemTitle);
+		cartRow.appendChild(cartPrice);
+
+		product.price = parseInt(product.price);
+	}
+
+let remove_btn = document.getElementById('btn-remove');
+	remove_btn.addEventListener('click', function(event){
+		document.getElementById("container").remove();
 		localStorage.clear();
 		let emptyCart = document.querySelector(".cart-total-price");
 		emptyCart.textContent = 0 + ' €';
 	})
-}
-
-let total = 0;
-for (let i = 0; i < produits.length; i++) {
-	total += produits[i].price;
-}
 
 let totale = document.querySelector(".cart-total-price");
-totale.textContent = total + ' €';
+totale.textContent = total(products) + ' €';
 
 // Formulaire //
 let contact = {};
@@ -86,7 +119,7 @@ document.getElementById("btn-purchase").addEventListener("click", function(){
 
 	let panier = {
 		contact: contact, 
-		products: productsId
+		products: generate_products_id(products)
 	}
 
 	const options = {
