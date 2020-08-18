@@ -5,8 +5,3 @@ totale.textContent = total + " €";
 
 let order = params.get("order");
 document.getElementById("order").textContent = order;
-
-let contact;
-if(localStorage.getItem("contact") !== null){
-	contact = JSON.parse(localStorage.getItem("contact"));
-}
