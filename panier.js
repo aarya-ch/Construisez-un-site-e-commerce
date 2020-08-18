@@ -49,14 +49,14 @@ function create_price(product_price){
 }
 
 // Calcul le prix total
-function total(products){
-	let total = 0;
+let total = 0;
+
+function total_price(products){
 	for (let i = 0; i < products.length; i++) {
 		total += products[i].price;
 	}
 	return total;
 }
-
 let products = JSON.parse(localStorage.getItem('productsInCart'));
 
 if (products) {
@@ -79,7 +79,7 @@ if (products) {
 
 		product.price = parseInt(product.price);
 	}
-
+//Création d'un bouton pour supprimer les éléments du bouton
 let remove_btn = document.getElementById('btn-remove');
 	remove_btn.addEventListener('click', function(event){
 		document.getElementById("container").remove();
@@ -89,7 +89,7 @@ let remove_btn = document.getElementById('btn-remove');
 	})
 
 let totale = document.querySelector(".cart-total-price");
-totale.textContent = total(products) + ' €';
+totale.textContent = total_price(products) + ' €';
 
 // Formulaire //
 let contact = {};
@@ -140,8 +140,5 @@ document.getElementById("btn-purchase").addEventListener("click", function(){
 	.catch((error) => {
 		console.error('Error:', error);
 	});
-
-			
 });
-
 }
